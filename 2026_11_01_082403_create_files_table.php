@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('file_name')->nullable();
             $table->string('file_type', 20);
             $table->string('mime_type')->nullable();
-            $table->unsignedBigInteger('file_size')->nullable();
+            $table->bigInteger('file_size')->nullable();
             $table->integer('duration')->nullable(); // طبق نظر مدیر پروژه در اینجا ماند
             $table->string('telegram_file_id')->nullable();
             $table->string('file_url')->nullable();

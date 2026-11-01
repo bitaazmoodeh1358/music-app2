@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trend_songss', function (Blueprint $table) {
+        Schema::create('trend_songs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('song_id')->unique()->constrained('songs')->cascadeOnDelete();
             $table->integer('trend_score')->default(0);

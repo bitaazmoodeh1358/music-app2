@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,15 +12,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('file_name')->nullable();
-            $table->string('file_type', 20);
-            $table->string('mime_type')->nullable();
-            $table->unsignedBigInteger('file_size')->nullable();
-            $table->integer('duration')->nullable(); // طبق نظر مدیر پروژه در اینجا ماند
-            $table->string('telegram_file_id')->nullable();
-            $table->string('file_url')->nullable();
+            $table->bigInteger('telegram_id')->unique();
+            $table->string('public_id')->unique();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('username')->nullable();
+            $table->string('language_code', 10)->nullable();
+            $table->boolean('is_premium')->default(false); // اصلاح تایپی
+            $table->foreignUuid('profile_image_id')->nullable()->constrained('files')->nullOnDelete();
             $table->timestamps();
         });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
